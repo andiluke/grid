@@ -2,6 +2,7 @@
 // see eqHeight & eqBox in grid.scss
 // eqBox is for equal height columns with the fancy drop shadow outline
 // called on load & on resize (throttled)
+
 namespace.equalBox = function(){
 	log("eqBox init");
 	var eqHeight;
