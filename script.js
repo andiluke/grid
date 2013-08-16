@@ -1,7 +1,7 @@
 // put boxes behind content to help with the illusion of equal height boxes.
 // see eqHeight & eqBox in grid.scss
 // eqBox is for equal height columns with the fancy drop shadow outline
-// called on load & on resize
+// called on load & on resize (throttled)
 namespace.equalBox = function(){
 	log("eqBox init");
 	var eqHeight;
