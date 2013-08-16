@@ -74,6 +74,7 @@ $colWidth: 5.85106%;
 // add padding to style individual content boxes
 
 .eqBox {
+	// this is the style dropped behind the eqBox by js
 	.boxDisplay {
 		@include boxShadowLight;
 		background-color: #FFF;
