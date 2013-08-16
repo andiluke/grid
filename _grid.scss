@@ -1,0 +1,134 @@
+/* **** GRID ***/
+/* 
+included in medium.scss
+
+at 940px
+columns: 55px
+gutter: 25px
+
+example: 
+<div class="colGroup group">
+	<div class="col colspan7">seven</div>
+	<div class="col colspan2">two</div>
+	<div class="col colspan2">two</div>
+	<div class="col colspan1">one</div>
+</div>
+*/
+
+$colMargin: 2.65957%;
+$colWidth: 5.85106%;
+
+.colGroup {
+	display: block;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	.col {
+		display: block;
+		float: left;
+		overflow: hidden;
+		margin-left: $colMargin;
+		margin-bottom:0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+		&:first-child {
+			margin-left: 0 !important;
+		}
+	}
+}
+
+.colspan1 { width: $colWidth;}
+.colspan2 { width: ($colWidth * 2) + $colMargin;}
+.colspan3 { width: ($colWidth * 3) + ($colMargin * 2); }
+.colspan4 { width: ($colWidth * 4) + ($colMargin * 3); }
+.colspan5 { width: ($colWidth * 5) + ($colMargin * 4); }
+.colspan6 { width: ($colWidth * 6) + ($colMargin * 5); }
+.colspan7 { width: ($colWidth * 7) + ($colMargin * 6); }
+.colspan8 { width: ($colWidth * 8) + ($colMargin * 7); }
+.colspan9 { width: ($colWidth * 9) + ($colMargin * 8); }
+.colspan10 { width: ($colWidth * 10) + ($colMargin * 9); }
+.colspan11 { width: ($colWidth * 11) + ($colMargin * 10); }
+.colspan12 { width: ($colWidth * 12) + ($colMargin * 11); }
+
+// float the last col right (when there's more than one col)
+.colGroup > .col + .col:last-child {
+	float: right;
+}
+
+// add this class to colGroup div to equalize column height
+.eqHeight {
+	overflow: hidden;
+	> .col {
+		margin-bottom: -9999px;
+		padding-bottom:9999px;
+	}
+}
+
+// also add this to trigger js to do the drop shadow underlay
+// js adds the boxDisplay divs
+// this keeps the content just inside the borders. 
+// add padding to style individual content boxes
+
+.eqBox {
+	.boxDisplay {
+		@include boxShadowLight;
+		background-color: #FFF;
+		z-index: 1;
+		position: absolute;
+		top:0px;
+		left: 3px;
+		width: 98%;
+
+	}	
+	.col {
+		position: relative;
+
+	}
+	.boxContent {
+		// padding to clear the box borders
+		padding: 0px 3px 12px 4px;
+		position: relative;
+		z-index: 2;
+	}
+}
+
+/* 
+& now for the grid without row divs. 
+for display of lists of items in columns & rows. 
+items must be of equal height or chaos occurs.
+*/
+
+.gridWrap {
+	.gridItem {
+		float: left;
+		overflow: hidden;
+
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-left: $colMargin;
+		margin-bottom: $colMargin;
+	}
+
+&.grid-3-up {
+	.gridItem {
+		width: ($colWidth * 4) + ($colMargin * 3);
+	}
+	// first item in each row
+	.gridItem:nth-child(3n+1) {
+		margin-left: 0;
+		clear: left;
+	}
+	// last item in each row
+	.gridItem:nth-child(3n+3){
+		float: right;
+	}
+}
+} // end gridWrap
+
+
